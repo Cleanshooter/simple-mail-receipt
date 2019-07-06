@@ -4,23 +4,25 @@
   "description": "This simple server receives mail, parses it and creates a task in Twilio Flex",
   "main": "index.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Cleanshooter/simple-mail-receipt.git"
+    "type": "git",
+    "url": "https://github.com/Cleanshooter/simple-mail-receipt.git"
   },
   "dependencies": {
-    "smtp-server": "^3.5.0"
+    "express": "^4.17.1",
+    "smtp-server": "^3.5.0",
+    "nodemon": "^1.17.3"
   },
   "devDependencies": {
     "eslint": "^5.0.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "nodemon": "^1.17.3"
+    "eslint-plugin-react": "^7.12.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "server": "NODE_ENV=production nodemon index.js"
   },
   "keywords": [
     "email",
