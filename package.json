@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "smtp-server": "^3.5.0",
-    "nodemon": "^1.17.3"
+    "mailparser": "^2.7.1",
+    "nodemon": "^1.17.3",
+    "smtp-server": "^3.5.0"
   },
   "devDependencies": {
     "eslint": "^5.0.0",

@@ -1,4 +1,5 @@
 const { SMTPServer } = require('smtp-server');
+const { simpleParser } = require('mailparser');
 const express = require('express');
 
 const app = express();
@@ -9,9 +10,17 @@ const port = 25; // process.env.NODE_ENV === 'production' ? 25 : 7025;
 const server = new SMTPServer({
   disabledCommands: ['STARTTLS', 'AUTH'],
   logger: true,
+  // eslint-disable-next-line no-unused-vars
   onData(stream, session, callback) {
+    simpleParser(stream)
+      .then((parsed) => {
+        console.log('Parsed Email: ', parsed);
+      })
+      .catch(err => console.error(err));
     stream.pipe(process.stdout); // print message to console
-    stream.on('end', callback);
+    stream.on('end', () => {
+      console.log('Data Received');
+    });
   },
 });
 
