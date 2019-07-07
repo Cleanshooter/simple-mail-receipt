@@ -1,6 +1,6 @@
 {
   "name": "simple-mail-receipt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This simple server receives mail, parses it and creates a task in Twilio Flex",
   "main": "index.js",
   "repository": {
@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "lodash": "^4.17.11",
     "mailparser": "^2.7.1",
     "nodemon": "^1.17.3",
-    "smtp-server": "^3.5.0"
+    "smtp-server": "^3.5.0",
+    "twilio": "^3.33.0"
   },
   "devDependencies": {
     "eslint": "^5.0.0",
