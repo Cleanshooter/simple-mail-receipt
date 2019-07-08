@@ -25,3 +25,7 @@ To get your local server running use:
 
 One your server is running you can send it a test locally:
 `sendmail test@localhost < ./email-test.txt`
+
+## Notes
+
+- Twilio Tasks have a size limit so for a more robust solution you'll want to implement a database.

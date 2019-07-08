@@ -1,7 +1,6 @@
 const TWILIO_WORKSPACE = 'WS4065ca00a9c69a922b29382293915421';
 const TWILIO_WORKFLOW_SID = 'WW89a9501d548c4e1f09132868c9dee4f0';
-const TWILIO_ACCOUNT_SID = 'AC67bd7cb05b18a6ea4d86c075dfa09b9b';
-const TWILIO_AUTH_TOKEN = 'XXXXX'; // Rotate after demo
+const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN } = process.env;
 
 const twilio = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
@@ -25,7 +24,7 @@ module.exports = {
     })
     .catch((error) => {
       console.error('Task not created: ', error);
-      // Task Attribute Size
+      // Task Attribute Size - important to check because the is a limit to the attribute size
       const bytes = jsonString =>
           ~-encodeURI(jsonString).split(/%..|./).length; // eslint-disable-line
       console.error(
