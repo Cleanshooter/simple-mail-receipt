@@ -54,7 +54,7 @@ const auth = async (req, res, next) => {
 };
 
 app.post('/send', auth, (req, res) => {
-  console.log(req.body);
+  console.log('SendGrid - Send Request: ', req.headers, req.body);
   const {
     to, from, subject, html
   } = req.body;

@@ -2,6 +2,8 @@ require('dotenv').config();
 const { SMTPServer } = require('smtp-server');
 const { simpleParser } = require('mailparser');
 const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
 
@@ -40,6 +42,9 @@ server.listen(port, () => console.log(`Mail server listening on port ${port}`));
 
 // A simple express server for testing purposes
 const app = express();
+app.options('*', cors()); // enable pre-flight across-the-board
+app.use(helmet());
+app.use(cors());
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/sendgrid', sendgrid);
