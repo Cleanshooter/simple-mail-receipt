@@ -1,6 +1,8 @@
 require('dotenv').config();
 const { SMTPServer } = require('smtp-server');
 const { simpleParser } = require('mailparser');
+const fs = require('fs');
+const https = require('https');
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -51,4 +53,24 @@ app.use('/sendgrid', sendgrid);
 app.get('/', (req, res) => {
   res.send('HEY!');
 });
-app.listen(80, () => console.log('Server running.'));
+
+if (process.env.NODE_ENV === 'production') {
+  const certLocation = `/etc/letsencrypt/live/${process.env.APP_DOMAIN}`;
+  if (fs.existsSync(`${certLocation}/privkey.pem`)) {
+    https
+      .createServer(
+        {
+          key: fs.readFileSync(`${certLocation}/privkey.pem`),
+          cert: fs.readFileSync(`${certLocation}/cert.pem`),
+          ca: fs.readFileSync(`${certLocation}/chain.pem`),
+        },
+        app,
+      )
+      .listen(443, () => {
+        console.log('Server listening on port 443');
+      });
+  }
+} else {
+  // Local development only needs port 80
+  app.listen(80, () => console.log('Server running.'));
+}
