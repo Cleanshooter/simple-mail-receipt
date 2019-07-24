@@ -36,6 +36,7 @@ const server = new SMTPServer({
     stream.pipe(process.stdout); // print message to console
     stream.on('end', () => {
       console.log('Data Received');
+      callback(null, 'Got it!');
     });
   },
 });
@@ -72,5 +73,5 @@ if (process.env.NODE_ENV === 'production') {
   }
 } else {
   // Local development only needs port 80
-  app.listen(80, () => console.log('Server running.'));
+  app.listen(80, () => console.log('Server listening on port 80'));
 }
