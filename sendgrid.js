@@ -64,7 +64,11 @@ app.post('/send', auth, (req, res) => {
     subject,
     html,
   };
-  sgMail.send(msg);
+  try {
+    sgMail.send(msg);
+  } catch (error) {
+    console.error(error);
+  }
   res.sendStatus(204);
 });
 
